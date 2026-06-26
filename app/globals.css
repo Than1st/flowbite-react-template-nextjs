@@ -1,5 +1,141 @@
 @import "tailwindcss";
-@plugin "flowbite-react/plugin/tailwindcss";
+@import "flowbite-react/plugin/tailwindcss";
+
+/* Flowbite component classes */
 @source "../.flowbite-react/class-list.json";
 
+/* Scan semua source project agar utility class ter-generate */
+@source "../app";
+@source "../components";
+@source "../hooks";
+@source "../providers";
+@source "../lib";
+
 @custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading;
+  }
+}
+
+/*
+ * Palet warna IMMAX (dari immax-app/tailwind.config.js)
+ * primary   = oranye brand (#E26621)
+ * secondary = navy brand (#2A2768)
+ */
+@theme {
+  --font-heading: var(--font-krona), ui-sans-serif, system-ui, sans-serif;
+  --font-paragraph: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+
+  /* Primary — oranye #E26621 */
+  --color-primary: #e26621;
+  --color-primary-50: #fdf4ef;
+  --color-primary-100: #fbe4d6;
+  --color-primary-200: #f6c4ad;
+  --color-primary-300: #f09d79;
+  --color-primary-400: #e97d4f;
+  --color-primary-500: #e26621;
+  --color-primary-600: #c95518;
+  --color-primary-700: #a84515;
+  --color-primary-800: #873714;
+  --color-primary-900: #6f2e12;
+
+  /* Secondary — navy #2A2768 */
+  --color-secondary: #2a2768;
+  --color-secondary-50: #eeedf5;
+  --color-secondary-100: #d5d4e6;
+  --color-secondary-200: #b0aed0;
+  --color-secondary-300: #8683b8;
+  --color-secondary-400: #6b67a8;
+  --color-secondary-500: #525096;
+  --color-secondary-600: #454381;
+  --color-secondary-700: #2a2768;
+  --color-secondary-800: #221f53;
+  --color-secondary-900: #1a183f;
+
+  /* Warna semantik */
+  --color-accent: #f1f1f1;
+  --color-light: #977390;
+  --color-background: #ffffff;
+  --color-dark-background: #1e1e1e;
+  --color-success: #94cca9;
+  --color-warning: #eb8758;
+  --color-error: #d37375;
+  --color-info: #94c5cc;
+  --color-muted: #6c757d;
+  --color-low: #efd16e;
+  --color-high: #aa0b00;
+  --color-medium: #eb8758;
+}
+
+/* Dashboard — mobile orange gradient image, desktop netral */
+.dashboard-page-bg-mobile {
+  background-image: url("/assets/image/orange-gradient.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.dashboard-page-bg-desktop {
+  background: linear-gradient(180deg, #f8f7fc 0%, #f3f4f8 45%, #eceef4 100%);
+}
+
+/* Kartu dashboard — glass (Data Statis) */
+.dashboard-card {
+  @apply rounded-2xl border border-white/55 bg-white/65 shadow-[0_4px_24px_rgba(0,0,0,0.1)] backdrop-blur-md;
+  @apply xl:rounded-xl xl:border-0 xl:bg-white xl:shadow-sm xl:backdrop-blur-none;
+}
+
+/* Kartu dashboard — solid putih (Status, CQI, Notifikasi) */
+.dashboard-card-solid {
+  @apply rounded-2xl bg-white shadow-md;
+  @apply xl:rounded-xl xl:shadow-sm;
+}
+
+/* Gradient header dashboard */
+.dashboard-header-gradient {
+  background: linear-gradient(
+    to right,
+    #2a2768 0%,
+    #2a2768 42%,
+    #8693be 82%,
+    rgba(42, 39, 104, 0) 100%
+  );
+}
+
+@media (min-width: 1280px) {
+  .dashboard-header-gradient {
+    background: linear-gradient(
+      to right,
+      #2a2768 0%,
+      #2a2768 38%,
+      #8693be 70%,
+      rgba(42, 39, 104, 0) 100%
+    );
+  }
+}
+.dashboard-trapz-shadow {
+  filter: drop-shadow(0 4px 10px rgb(0 0 0 / 0.18))
+    drop-shadow(0 2px 4px rgb(0 0 0 / 0.1));
+}
+
+@media (min-width: 1280px) {
+  .dashboard-trapz-shadow {
+    filter: drop-shadow(0 3px 8px rgb(0 0 0 / 0.14));
+  }
+}
+
+/* Hindari SVG gauge CQI melebar ke seluruh layar */
+.cqi-gauge svg {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}

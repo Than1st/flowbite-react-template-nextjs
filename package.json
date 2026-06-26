@@ -1,9 +1,11 @@
 {
-  "name": "flowbite-react-template-nextjs",
+  "name": "immax-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:clean": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true})}catch(e){}\" && next dev",
+    "clean": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true})}catch(e){}\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -11,10 +13,15 @@
     "format:check": "prettier . --check"
   },
   "dependencies": {
+    "axios": "^1.17.0",
+    "date-fns": "^4.4.0",
     "flowbite-react": "^0.12.4",
+    "jwt-decode": "^4.0.0",
     "next": "^15.4.2",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-icons": "^5.6.0",
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
